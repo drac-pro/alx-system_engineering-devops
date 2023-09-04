@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -maxdepth 99 -a -type d -empty -or -type f -empty | cut -d'/' -f1
+find . -a -type d -empty -or -type f -empty | cut -d'/' -f1
