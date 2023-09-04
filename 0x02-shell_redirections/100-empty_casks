@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type d -empty -or -type f -empty -a -print | tr -d '^.*/'
+find . -empty -type f -o -type d | tr -d '^.*/'
