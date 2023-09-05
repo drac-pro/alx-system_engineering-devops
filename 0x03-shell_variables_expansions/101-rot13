@@ -1,2 +1,2 @@
 #!/bin/bash
-rot13 | rot13 -d
+tr 'A-Za-z' 'N-ZA-Mn-za-m'
