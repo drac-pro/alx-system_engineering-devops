@@ -1,0 +1,2 @@
+#!/bin/bash
+rot13 | rot13 -d
