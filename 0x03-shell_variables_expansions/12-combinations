@@ -1,0 +1,2 @@
+#!/bin/bash
+echo {a..z}{a..z} | tr ' ' '\n'  | sort  | grep -v oo | head -n 64
