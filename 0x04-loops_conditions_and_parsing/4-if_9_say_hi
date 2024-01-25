@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Displays "Best School" 10 times using a while loop.
+
+i=10
+while [ $i -gt 0 ]
+do
+	if [ $i -eq 1 ]
+	then
+	  echo "Hi"
+	fi
+	echo "Best School"
+	(( i-- ))
+done
