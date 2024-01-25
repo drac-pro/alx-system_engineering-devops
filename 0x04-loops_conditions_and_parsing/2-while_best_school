@@ -5,5 +5,5 @@ i=10
 while [ $i -gt 0 ]
 do
 	echo "Best School"
-	((i--))
+	(( i-- ))
 done
