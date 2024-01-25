@@ -7,6 +7,6 @@ dir=$PWD
 for file in "$dir"/*
 do
   name=${file##*/}
-  name=${file#*-*}
+  name=${file#*-}
   echo "$name"
 done
