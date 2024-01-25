@@ -7,15 +7,11 @@ do
   if [ $i -eq 7 ]
   then
     echo "bad luck"
-    (( i-- ))
-    continue
-  fi
-  if [ $i -eq 3 ]
+  elif [ $i -eq 3 ]
   then
     echo "good luck"
-    (( i-- ))
-    continue
+  else
+    echo "Best School"
   fi
-  echo "Best School"
   (( i-- ))
 done
