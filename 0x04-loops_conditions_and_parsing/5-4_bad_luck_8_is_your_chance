@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#displays "Best School" 10 times using a while loop.
+
+i=10
+while [ $i -gt 0 ]
+do
+	if [ $i -eq 7 ]
+	then
+	  echo "bad luck"
+	  (( i-- ))
+	  continue
+	fi
+        if [ $i -eq 3 ]
+        then
+          echo "good luck"
+	  (( i-- ))
+	  continue
+        fi
+	echo "Best School"
+	(( i-- ))
+done
