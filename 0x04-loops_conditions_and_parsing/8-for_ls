@@ -3,10 +3,14 @@
 #In a list format
 #Where only the part of the name after the first dash is displayed
 
-dir=$PWD
-for file in "$dir"/*
+#files=$(ls)
+#for file in $files
+#do
+#  echo "$file" | cut -d- -f2
+#done
+
+for file in *
 do
-  name=${file##*/}
-  name=${file#*-}
+  name=${file#*-*}
   echo "$name"
 done
