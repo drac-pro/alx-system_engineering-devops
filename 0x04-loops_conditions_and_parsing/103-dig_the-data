@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#groups visitors by IP and HTTP status code, and displays this data.
+
+awk '{ ip_status[ $1 " " $9 ]++ } END { for (pair in ip_status) print ip_status[pair] " " pair }' "$PWD"/apache-access.log
