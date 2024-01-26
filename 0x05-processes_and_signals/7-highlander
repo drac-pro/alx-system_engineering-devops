@@ -2,13 +2,9 @@
 #displays To infinity and beyond indefinitely With a sleep 2 in between each iteration
 #displays I am invincible!!! when receiving a SIGTERM signal
 
-invincible () {
-  echo "I am invincible!!!"
-  exit 0
-}
 while true
 do
-  trap invincible SIGTERM
+  trap 'echo "To infinity and beyond"' SIGTERM
   echo "To infinity and beyond"
   sleep 2
 done
