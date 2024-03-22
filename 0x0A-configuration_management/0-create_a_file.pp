@@ -1,3 +1,5 @@
+# Creates a file in /temp
+
 file { '/tmp/school':
   ensure  => 'file',
   content => 'I love Puppet',
