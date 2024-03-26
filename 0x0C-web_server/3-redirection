@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Configure your Nginx server so that /redirect_me is redirecting to another page
+
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+
+sed -i '/server_name _;/a \\trewrite ^/redirect_me$ https://github.com/drac-pro permanent;' /etc/nginx/sites-available/default
+
+nginx -s reload
