@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # install nginx
 
-apt-get -y update
-apt-get -y install nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
 echo "server {
     listen 80;
     location / {
@@ -11,4 +11,4 @@ echo "server {
     }
 }" | sudo tee /etc/nginx/sites-available/default
 
-service nginx restart
+sudo service nginx restart
