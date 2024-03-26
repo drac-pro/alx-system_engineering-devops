@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 # Configure your Nginx server so that /redirect_me is redirecting to another page
 
-apt-get -y update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo apt-get -y update
+sudo apt-get -y install nginx
 
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+# Create a backup of the original Nginx configuration file
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
 
-sed -i '/server_name _;/a \\trewrite ^/redirect_me$ https://github.com/drac-pro permanent;' /etc/nginx/sites-available/default
+# Write the server block configuration with the 301 redirect
+cat << 'EOF' | sudo tee /etc/nginx/sites-available/default
+server {
+    listen 80;
+    server_name _;
 
-service nginx start
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    # Other location directives and server configurations...
+}
+EOF
