@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Fix issue so so when i curl 0:8080 which is mapped to my docker container it returns Hello Holberton
 
-echo '<p>Hello Holberton<p>' > index.html
-mv index.html /var/www/html
+echo 'Hello Holberton' > /var/www/html/index.html
+service apache2 restart
