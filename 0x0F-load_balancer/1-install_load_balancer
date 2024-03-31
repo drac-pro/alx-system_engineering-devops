@@ -10,6 +10,7 @@ echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
 echo "frontend my_frontend
 	bind *:80
+	mode http
 	default_backend my_backend
 
 backend my_backend
