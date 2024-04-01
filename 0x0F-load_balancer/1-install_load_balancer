@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # installs and configures a load balancer on a server
 
-sudo apt-get -y update
 sudo apt-get -y install --no-install-recommends software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.8
+sudo apt-get -y update
 sudo apt-get -y install haproxy=2.8.\*
 
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
@@ -14,8 +14,8 @@ echo "frontend my_frontend
 	default_backend my_backend
 	stats enable
 	stats uri /haproxy?stats
-	option httpclose
 	option forwardfor
+	option httpclose
 
 backend my_backend
 	balance roundrobin
