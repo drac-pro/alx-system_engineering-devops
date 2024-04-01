@@ -1,25 +1,25 @@
 # install and configures nginx
 
-exec {'update':
+exec { 'update':
   provider => shell,
   command  => 'sudo apt-get -y update',
-  before   => Package['install Nginx']
+  before   => Exec['install Nginx'],
 }
 
-package { 'nginx':
-  ensure => installed
+exec { 'install Nginx':
+  provider => shell,
+  command  => 'sudo apt-get -y install nginx',
+  before   => Exec['add_header'],
 }
 
-file_line { 'custom_header':
-  ensure  => 'present',
-  path    => '/etc/nginx/nginx.conf',
-  after   => 'http {',
-  line    => "add_header X-Served-By \"${hostname}\";",
-  require => Package['nginx'],
-  before  => Service['nginx']
+exec { 'add_header':
+  provider    => shell,
+  environment => ["HOST=${hostname}"],
+  command     => 'sudo sed -i "/http {/a \\\tadd_header X-Served-By \"$HOSTNAME\";" /etc/nginx/nginx.conf',
+  before      => Exec['restart Nginx']
 }
 
-service { 'nginx':
-  ensure  => running,
-  require => Package['nginx']
+exec { 'restart Nginx':
+  provider => shell,
+  command  => 'sudo service nginx restart'
 }
