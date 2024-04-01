@@ -8,17 +8,14 @@ sudo apt-get -y install haproxy=2.8.\*
 
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
-echo "frontend my_frontend
+echo "listen hbnb
 	bind *:80
 	mode http
-	default_backend my_backend
 	stats enable
 	stats uri /haproxy?stats
-	option forwardfor
-	option httpclose
-
-backend my_backend
 	balance roundrobin
+	option httpclose
+	option forwardfor
 	server 522745-web-01 52.4.1.57:80 check
 	server 522745-web-02 52.3.244.12:80 check" | sudo tee -a /etc/haproxy/haproxy.cfg
 
