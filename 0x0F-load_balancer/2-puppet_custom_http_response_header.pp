@@ -1,5 +1,11 @@
 # install and configures nginx
 
+exec {'update':
+  provider => shell,
+  command  => 'sudo apt-get -y update',
+  before   => Package['install Nginx']
+}
+
 package { 'nginx':
   ensure => installed
 }
