@@ -12,6 +12,10 @@ echo "frontend my_frontend
 	bind *:80
 	mode http
 	default_backend my_backend
+	stats enable
+	stats uri /haproxy?stats
+	option httpclose
+	option forwardfor
 
 backend my_backend
 	balance roundrobin
