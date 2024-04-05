@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# display information about subdomains.
+# Output: The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
+
+display_subdomain_info () {
+	line=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | sed -n '2p' | awk '{print $4, $5}')
+	echo "$2 $line" | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
+}
+
+if [ "$#" == 1 ]
+then
+  display_subdomain_info "$1" "www"
+  display_subdomain_info "$1" "lb-01"
+  display_subdomain_info "$1" "web-01"
+  display_subdomain_info "$1" "web-02"
+elif [ "$#" == 2 ]
+then
+  display_subdomain_info "$1" "$2"
+fi
