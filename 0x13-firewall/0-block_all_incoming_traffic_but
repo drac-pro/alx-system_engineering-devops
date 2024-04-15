@@ -1,7 +1,7 @@
 sudo apt -y update
 sudo apt -y install ufw
 sudo ufw status verbose
-sudo ufw enable -y
+sudo ufw enable
 sudo ufw default deny incoming -y
 sudo ufw default allow outgoing -y
 sudo ufw status verbose
