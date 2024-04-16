@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#  run the whoami command under the user passed as an argument
+
+if [ $# -ge 1 ]; then
+ su - "$1" -c 'whoami'
+fi
