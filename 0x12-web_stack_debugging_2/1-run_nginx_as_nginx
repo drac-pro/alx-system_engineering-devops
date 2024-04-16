@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# configures the container to
+# nginx must be running as nginx user
+# nginx must be listening on all active IPs on port 8080
+
+sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+sudo -u nginx systemctl restart nginx
