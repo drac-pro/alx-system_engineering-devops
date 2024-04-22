@@ -14,6 +14,6 @@ if __name__ == "__main__":
 
     with open('{}.csv'.format(user_id), 'w', newline="") as csvout:
         writer = csv.writer(csvout, quoting=csv.QUOTE_ALL)
-        for task in todos:
+        for task in sorted(todos):
             writer.writerow([user_id, username,
                             task.get('completed'), task.get('title')])
