@@ -1,14 +1,28 @@
 #!/usr/bin/python3
 """Returns information about his/her TODO list progress."""
 import requests
-import sys
+from sys import argv
 
-if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
-    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
 
-    completed = [t.get("title") for t in todos if t.get("completed") is True]
-    print("Employee {} is done with tasks({}/{}):".format(
-        user.get("name"), len(completed), len(todos)))
-    [print("\t {}".format(c)) for c in completed]
+if __name__ == '__main__':
+    employee_id = int(argv[1])
+    base_url = "https://jsonplaceholder.typicode.com/"
+    user_url = base_url + "users/" + str(employee_id)
+    user_response = requests.get(user_url)
+    if user_response.ok:
+        employee_name = user_response.json().get('name')
+
+        todos_url = base_url + "todos?userId=" + str(employee_id)
+        todos_response = requests.get(todos_url)
+        if todos_response.ok:
+            todos = todos_response.json()
+
+            total_tasks = len(todos)
+            completed_tasks = sum(task['completed'] for task in todos)
+            completed_task_titles = \
+                [task['title'] for task in todos if task['completed']]
+
+            print(f"Employee {employee_name} is \
+done with tasks({completed_tasks}/{total_tasks}):")
+            for title in completed_task_titles:
+                print("\t " + title)
