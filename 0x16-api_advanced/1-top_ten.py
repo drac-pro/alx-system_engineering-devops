@@ -12,7 +12,7 @@ def top_ten(subreddit):
     """
     try:
         headers = {'User-Agent':
-                   'Python:SubredditHotPosts:v1.2.3 (by /u/drac_prog)'}
+                   'Python:SubredditHotPosts:v1.2.3'}
         url = "https://www.reddit.com/r/{}/hot.json?limit=9".format(subreddit)
         response = requests.get(url, headers=headers, allow_redirects=False)
         if response.status_code != 200:
