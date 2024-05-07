@@ -11,7 +11,7 @@ def number_of_subscribers(subreddit):
         number of subscribers
     """
     try:
-        headers = {'User-Agent': 'Python:SubredditSubscriberCount:v1.2.3'}
+        headers = {'User-Agent': 'Python:SubredditSubscriberCount:v1.2.3 (by /u/drac_prog)'}
         url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
         response = requests.get(url, headers=headers, allow_redirects=False)
         if response.status_code == 200:
