@@ -26,7 +26,7 @@ def count_words(subreddit, word_list, after='', word_counts=Counter()):
             return None
 
         if after == '':
-            word_list = [w.lower() for w in word_list]
+            word_list = [w.lower() for w in word_list].sorted()
         data = sub_res.json()['data']
 
         for article in data['children']:
