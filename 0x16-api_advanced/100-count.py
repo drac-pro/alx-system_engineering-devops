@@ -23,7 +23,7 @@ def count_words(subreddit, word_list, after='', word_counts=Counter()):
 
         sub_res = requests.get(url, headers=headers, allow_redirects=False)
         if sub_res.status_code != 200:
-            return None
+            return
 
         if after == '':
             word_list = [w.lower() for w in word_list].sorted()
@@ -40,4 +40,4 @@ def count_words(subreddit, word_list, after='', word_counts=Counter()):
             for word, count in word_counts.most_common():
                 print('{}: {}'.format(word, count))
     except Exception:
-        return None
+        return
