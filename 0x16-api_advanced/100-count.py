@@ -2,7 +2,7 @@
 """defines a function that print count of keywords inall hot
 articles in a subreddit"""
 import requests
-import re
+from collections import Counter
 
 
 def count_words(subreddit, word_list, after='', word_counts=Counter()):
@@ -23,7 +23,7 @@ def count_words(subreddit, word_list, after='', word_counts=Counter()):
 
         sub_res = requests.get(url, headers=headers, allow_redirects=False)
         if sub_res.status_code != 200:
-            return
+            return None
 
         if after == '':
             word_list = [w.lower() for w in word_list]
@@ -31,8 +31,7 @@ def count_words(subreddit, word_list, after='', word_counts=Counter()):
 
         for article in data['children']:
             title = article['data']['title'].lower()
-            words = re.findall(r'\b\w+\b', title)
-            word_counts.update(w for w in words if w in word_list)
+            word_counts.update(w for w in title.split() if w in word_list)
 
         if data['after'] is not None:
             return count_words(subreddit, word_list,
@@ -41,4 +40,4 @@ def count_words(subreddit, word_list, after='', word_counts=Counter()):
             for word, count in word_counts.most_common():
                 print('{}: {}'.format(word, count))
     except Exception:
-        return
+        return None
