@@ -1,0 +1,16 @@
+[Unit]
+Description=Gunicorn instance to serve my flask web application
+After=network.target mysql.service
+
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/AirBnB_clone_v4
+Environment="HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db"
+ExecStart=/home/ubuntu/.local/bin/gunicorn --workers 3 --bind 0.0.0.0:5003 --error-logfile /tmp/airbnb-error.log --access-logfile /tmp/airbnb-access.log web_dynamic.2-hbnb:app
+Restart=on-failure
+
+
+[Install]
+WantedBy=multi-user.target
